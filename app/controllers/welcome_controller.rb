@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
+  protect_from_forgery except: [:start]
+
   def index
     render text: 'this is line bot'
   end
