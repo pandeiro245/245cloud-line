@@ -9,8 +9,6 @@ class WelcomeController < ApplicationController
     text = params['result'].first['content']['text']
     to = params['result'].first['content']['from']
 
-    raise to.inspect
-
     if text.nil?
       Line.echo to, '24分集中開始！'
       1.upto(23).each do |i|
