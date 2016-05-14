@@ -24,8 +24,19 @@ class WelcomeController < ApplicationController
       pres = Worklog.where(user_key: to).order('created_at desc')
       if pres.present?
         pre = pres.first
-        duration = (Time.now - pre.created_at).to_i
-        disp += "\n前回の「#{pre.name}」は#{duration}秒でした"
+        sec = (Time.now - pre.created_at).to_i
+        hour = (sec / (60 * 60)).to_i
+        remain = (sec - hour * 60 * 60)
+        min  = (remain / 60 ).to_i
+        sec  = remain - 60*min
+        if hour
+          duration = "#{hour}時間#{min}分#{sec}秒"
+        elsif min
+          duration = "#{min}分#{sec}秒"
+        else
+          duration = "#{sec}秒"
+        end
+        disp += "\n前回の「#{pre.name}」は#{duration}でした"
       end
 
       Worklog.create!(user_key: to, name: text)
