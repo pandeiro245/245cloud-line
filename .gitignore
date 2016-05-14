@@ -15,3 +15,7 @@
 /log/*
 !/log/.keep
 /tmp
+
+# others
+.*.sw*
+/config/database.yml
