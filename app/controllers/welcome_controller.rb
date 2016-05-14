@@ -23,13 +23,13 @@ class WelcomeController < ApplicationController
       text = "「#{text}」を開始するのですね！"
       pres = Worklog.where(user_key: to).order('created_at desc')
       if pres.present?
-        pre = pre.first
+        pre = pres.first
         duration = (Time.now - pre.created_at).to_i
         text += "\n「#{pre.name}」は#{duration}秒でした"
       end
 
-      Line.echo to, text 
       Worklog.create!(user_key: to, name: text)
+      Line.echo to, text 
     end
   end
 end
