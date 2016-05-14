@@ -6,8 +6,7 @@ class WelcomeController < ApplicationController
   end
 
   def start
-    raise request.inspect
-    params = JSON.parse(request.body.read)
+    raise params.inspect
     text = params['result'].first['content']['text']
     to = params['result'].first['content']['from']
 
