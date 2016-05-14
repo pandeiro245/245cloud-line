@@ -21,10 +21,11 @@ class WelcomeController < ApplicationController
       Line.echo to, '休憩時間終了です。また24分頑張ってくださいっ！' 
     else
       text = "「#{text}」を開始するのですね！"
-      if pre = Worklog.where(user_key: to).order('created_at desc')
+      pres = Worklog.where(user_key: to).order('created_at desc')
+      if pres.present?
         pre = pre.first
         duration = (Time.now - pre.created_at).to_i
-        text += "\n「#{pre}」は#{duration}秒でした"
+        text += "\n「#{pre.name}」は#{duration}秒でした"
       end
 
       Line.echo to, text 
