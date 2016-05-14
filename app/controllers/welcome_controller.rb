@@ -20,16 +20,16 @@ class WelcomeController < ApplicationController
       sleep (5 * 60) 
       Line.echo to, '休憩時間終了です。また24分頑張ってくださいっ！' 
     else
-      text = "「#{text}」を開始するのですね！"
+      disp = "「#{text}」を開始するのですね！"
       pres = Worklog.where(user_key: to).order('created_at desc')
       if pres.present?
         pre = pres.first
         duration = (Time.now - pre.created_at).to_i
-        text += "\n「#{pre.name}」は#{duration}秒でした"
+        disp += "\n前回の「#{pre.name}」は#{duration}秒でした"
       end
 
       Worklog.create!(user_key: to, name: text)
-      Line.echo to, text 
+      Line.echo to, disp
     end
   end
 end
