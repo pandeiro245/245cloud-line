@@ -42,6 +42,7 @@ class WelcomeController < ApplicationController
       Worklog.create!(user_key: to, name: text)
       Line.echo to, disp
     end
+    render json: 'ok'
   end
 end
 
