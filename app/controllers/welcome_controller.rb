@@ -6,7 +6,6 @@ class WelcomeController < ApplicationController
   end
 
   def start
-    raise params.inspect
     text = params['result'].first['content']['text']
     to = params['result'].first['content']['from']
 
