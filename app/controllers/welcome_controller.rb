@@ -29,9 +29,9 @@ class WelcomeController < ApplicationController
         remain = (sec - hour * 60 * 60)
         min  = (remain / 60 ).to_i
         sec  = remain - 60*min
-        if hour
+        if hour > 0
           duration = "#{hour}時間#{min}分#{sec}秒"
-        elsif min
+        elsif min > 0
           duration = "#{min}分#{sec}秒"
         else
           duration = "#{sec}秒"
